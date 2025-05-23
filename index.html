@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tinn的个人主页</title>
+    <style>
+        :root {
+            --bg-color: #f5f5f5;
+            --text-color: #333;
+            --container-bg: white;
+            --border-color: #eee;
+            --primary-color: #3498db;
+            --header-color: #2c3e50;
+            --footer-color: #7f8c8d;
+            --shadow-color: rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --container-bg: #2d2d2d;
+            --border-color: #444;
+            --primary-color: #5dade2;
+            --header-color: #ecf0f1;
+            --footer-color: #bdc3c7;
+            --shadow-color: rgba(0,0,0,0.3);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--container-bg);
+            box-shadow: 0 0 10px var(--shadow-color);
+            border-radius: 5px;
+            margin-top: 30px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            color: var(--header-color);
+            margin: 0;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 20px auto;
+            display: block;
+            border: 3px solid var(--primary-color);
+            transition: border-color 0.3s;
+        }
+
+        section {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h2 {
+            color: var(--primary-color);
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .skill {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            color: var(--footer-color);
+        }
+
+        .social-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            opacity: 0.9;
+        }
+
+        .theme-icon {
+            margin-right: 5px;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            opacity: 0.9;
+        }
+
+        .visitor-counter {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle">
+        <span class="theme-icon">🌙</span>
+        <span>深色模式</span>
+    </button>
+
+    <div class="container">
+        <header>
+            <img src="https://via.placeholder.com/150" alt="Tinn的照片" class="profile-img">
+            <h1>Tinn</h1>
+            <p>欢迎来到我的个人主页</p>
+        </header>
+
+        <section id="about">
+            <h2>关于我</h2>
+            <p>你好，我是Tinn！我是一个充满激情的学习者，热爱技术、设计和创新。这个页面是我在网络上展示自己的一个小空间。</p>
+        </section>
+
+        <section id="skills">
+            <h2>我的技能</h2>
+            <div class="skills">
+                <span class="skill">设计🖌️</span>
+                <span class="skill">摄影📷</span>
+                <span class="skill">写作✍️</span>
+                <span class="skill">唱🎤</span>
+                <span class="skill">跳💃</span>
+                <span class="skill">RAP🎤</span>
+                <span class="skill">篮球🏀</span>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>联系我</h2>
+            <p>邮箱: tinn@tinn.dpdns.org</p>
+            <div class="social-links">
+                <a href="https://github.com/tinn2000">GitHub</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; <span id="currentYear"></span> Tinn的个人主页. 保留所有权利.</p>
+            <div class="visitor-counter" id="visitorCounter">
+                你是第 <span id="visitCount">1</span> 位访客
+            </div>
+        </footer>
+    </div>
+
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <script>
+        // 自动更新年份
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // 主题切换功能
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('.theme-icon');
+        
+        // 检查本地存储中的主题偏好
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeButton(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeButton(newTheme);
+        });
+
+        function updateThemeButton(theme) {
+            if (theme === 'dark') {
+                themeIcon.textContent = '☀️';
+                themeToggle.querySelector('span:last-child').textContent = '浅色模式';
+            } else {
+                themeIcon.textContent = '🌙';
+                themeToggle.querySelector('span:last-child').textContent = '深色模式';
+            }
+        }
+
+        // 返回顶部按钮
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 简单的访问计数器（使用localStorage）
+        const visitCount = document.getElementById('visitCount');
+        let count = localStorage.getItem('visitCount');
+        
+        if (count) {
+            count = parseInt(count) + 1;
+        } else {
+            count = 1;
+        }
+        
+        localStorage.setItem('visitCount', count);
+        visitCount.textContent = count;
+
+        // 添加页面加载动画
+        document.body.style.opacity = '0';
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease-in-out';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
